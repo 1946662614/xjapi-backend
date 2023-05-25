@@ -1,13 +1,12 @@
 package com.yupi.xjapi.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.gson.Gson;
+import com.xj.xjapiclientsdk.client.XjApiClient;
 import com.yupi.xjapi.annotation.AuthCheck;
-import com.yupi.xjapi.common.BaseResponse;
-import com.yupi.xjapi.common.DeleteRequest;
-import com.yupi.xjapi.common.ErrorCode;
-import com.yupi.xjapi.common.ResultUtils;
+import com.yupi.xjapi.common.*;
 import com.yupi.xjapi.constant.UserConstant;
 import com.yupi.xjapi.exception.BusinessException;
 import com.yupi.xjapi.exception.ThrowUtils;
@@ -16,9 +15,11 @@ import com.yupi.xjapi.model.dto.interfaceInfo.InterfaceInfoQueryRequest;
 import com.yupi.xjapi.model.dto.interfaceInfo.InterfaceInfoUpdateRequest;
 import com.yupi.xjapi.model.entity.InterfaceInfo;
 import com.yupi.xjapi.model.entity.User;
+import com.yupi.xjapi.model.enums.InterfaceInfoStatusEnum;
 import com.yupi.xjapi.service.InterfaceInfoService;
 import com.yupi.xjapi.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +45,11 @@ public class InterfaceInfoController {
     private UserService userService;
 
     private final static Gson GSON = new Gson();
-
+    
+    // 引入api客户端实例
+    @Resource
+    private  XjApiClient xjApiClient;
+    
     // region 增删改查
 
     /**
@@ -174,9 +179,71 @@ public class InterfaceInfoController {
         Page<InterfaceInfo> interfaceInfoPage = interfaceInfoService.page(new Page<>(current, size), queryWrapper);
         return ResultUtils.success(interfaceInfoPage);
     }
-
-   
-
     
+    /**
+     * 发布
+     *
+     * @param idRequest
+     * @return
+     */
+    @PostMapping("/online")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    // 传入接口id
+    public BaseResponse<Boolean> onlineInterfaceInfo(@RequestBody IdRequest idRequest ,HttpServletRequest request ) {
+        if (idRequest == null || idRequest.getId() <= 0) {
+            //请求参数错误
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 取出id
+        long id = idRequest.getId();
+        // 1.1判断id是否存在
+        InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
+        // 1.2 不存在则抛异常
+        ThrowUtils.throwIf(oldInterfaceInfo == null, ErrorCode.NOT_FOUND_ERROR);
+        // 2. 判断该接口是否可以调用
+        // 首先要引入api的pom文件，在配置文件中配置    access-key secret-key
+        // 引入api客户端实例
+        com.xj.xjapiclientsdk.model.User user = new com.xj.xjapiclientsdk.model.User();
+        user.setUsername("test");
+        String userName = xjApiClient.getUserNameByPost(user);
+        if (StringUtils.isBlank(userName)) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR,"接口验证失败");
+        }
+        // 仅本人或管理员可修改
+        InterfaceInfo interfaceInfo = new InterfaceInfo();
+        interfaceInfo.setId(id);
+        // 更新api状态信息
+        interfaceInfo.setStatus(InterfaceInfoStatusEnum.ONLINE.getValue());
+        boolean result = interfaceInfoService.updateById(interfaceInfo);
+        return ResultUtils.success(result);
+    }
+    
+    /**
+     * 下线
+     *
+     * @param idRequest
+     * @return
+     */
+    @PostMapping("/offline")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Boolean> offlineInterfaceInfo(@RequestBody IdRequest idRequest) {
+        if (idRequest == null || idRequest.getId() <= 0) {
+            //请求参数错误
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 取出id
+        long id = idRequest.getId();
+        // 1.1判断id是否存在
+        InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
+        // 1.2 不存在则抛异常
+        ThrowUtils.throwIf(oldInterfaceInfo == null, ErrorCode.NOT_FOUND_ERROR);
+        // 仅本人或管理员可修改
+        InterfaceInfo interfaceInfo = new InterfaceInfo();
+        interfaceInfo.setId(id);
+        // 更新api状态信息
+        interfaceInfo.setStatus(InterfaceInfoStatusEnum.OFFLINE.getValue());
+        boolean result = interfaceInfoService.updateById(interfaceInfo);
+        return ResultUtils.success(result);
+    }
 
 }
