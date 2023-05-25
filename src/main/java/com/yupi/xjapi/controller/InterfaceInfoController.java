@@ -11,6 +11,7 @@ import com.yupi.xjapi.constant.UserConstant;
 import com.yupi.xjapi.exception.BusinessException;
 import com.yupi.xjapi.exception.ThrowUtils;
 import com.yupi.xjapi.model.dto.interfaceInfo.InterfaceInfoAddRequest;
+import com.yupi.xjapi.model.dto.interfaceInfo.InterfaceInfoInvokeRequest;
 import com.yupi.xjapi.model.dto.interfaceInfo.InterfaceInfoQueryRequest;
 import com.yupi.xjapi.model.dto.interfaceInfo.InterfaceInfoUpdateRequest;
 import com.yupi.xjapi.model.entity.InterfaceInfo;
@@ -244,6 +245,44 @@ public class InterfaceInfoController {
         interfaceInfo.setStatus(InterfaceInfoStatusEnum.OFFLINE.getValue());
         boolean result = interfaceInfoService.updateById(interfaceInfo);
         return ResultUtils.success(result);
+    }
+    
+    /**
+     * 测试调用
+     *
+     * @param
+     * @return
+     */
+    @PostMapping("/invoke")
+    public BaseResponse<Object> invokeInterfaceInfo(@RequestBody InterfaceInfoInvokeRequest interfaceInfoInvokeRequest, HttpServletRequest request) {
+        if (interfaceInfoInvokeRequest == null || interfaceInfoInvokeRequest.getId() <= 0) {
+            //请求参数错误
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 取出id
+        long id = interfaceInfoInvokeRequest.getId();
+        // 取出参数
+        String userRequestParams = interfaceInfoInvokeRequest.getUserRequestParams();
+        // 1.1判断id是否存在
+        InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
+        // 1.2 不存在则抛异常
+        ThrowUtils.throwIf(oldInterfaceInfo == null, ErrorCode.NOT_FOUND_ERROR);
+        // 判断接口是否关闭
+        ThrowUtils.throwIf(oldInterfaceInfo.getStatus().equals(InterfaceInfoStatusEnum.OFFLINE), ErrorCode.NOT_FOUND_ERROR,"接口已关闭");
+        
+        // 获取用户的key
+        User loginUser = userService.getLoginUser(request);
+        String accessKey = loginUser.getAccessKey();
+        String secretKey = loginUser.getSecretKey();
+        // 新建接口客户端对象，专门给用户调用
+        XjApiClient tempClient = new XjApiClient(accessKey,secretKey);
+        // 解析前端传来的测试参数
+        Gson gson = new Gson();
+        com.xj.xjapiclientsdk.model.User user = gson.fromJson(userRequestParams, com.xj.xjapiclientsdk.model.User.class);
+        // 调用接口
+        String userNameByPost = tempClient.getUserNameByPost(user);
+        // 返回结果对象
+        return ResultUtils.success(userNameByPost);
     }
 
 }
