@@ -1,5 +1,6 @@
 package com.yupi.xjapi.model.dto.userinterfaceinfo;
 
+
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,54 +13,30 @@ import java.io.Serializable;
  * @from <a href="https://yupi.icu">编程导航知识星球</a>
  */
 @Data
-public class InterfaceInfoUpdateRequest implements Serializable {
+public class UserInterfaceInfoUpdateRequest implements Serializable {
     
     /**
-     * 主键
+     * id
      */
     private Long id;
     
     /**
-     * 用户名
+     * 调用用户 id
      */
-    private String name;
+    private Long userId;
     
     /**
-     * 描述
+     * 总调用次数
      */
-    private String description;
+    private Integer totalNum;
     
     /**
-     * 接口地址
+     * 剩余调用次数
      */
-    private String url;
+    private Integer leftNum;
     
     /**
-     *  请求参数
-     */
-    private String requestParams;
-    
-    /**
-     * 请求头
-     */
-    private String requestHeader;
-    
-    /**
-     * 响应头
-     */
-    private String responseHeader;
-    
-    
-    /**
-     * 接口状态（0 - 关闭， 1 - 开启））
+     * 0-正常， 1-禁用
      */
     private Integer status;
-    
-    /**
-     * 请求类型
-     */
-    private String method;
-    
- 
-    private static final long serialVersionUID = 1L;
 }

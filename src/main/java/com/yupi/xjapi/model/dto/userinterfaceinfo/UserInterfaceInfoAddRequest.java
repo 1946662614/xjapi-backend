@@ -1,5 +1,7 @@
 package com.yupi.xjapi.model.dto.userinterfaceinfo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,42 +13,32 @@ import java.io.Serializable;
  * @from <a href="https://yupi.icu">编程导航知识星球</a>
  */
 @Data
-public class InterfaceInfoAddRequest implements Serializable {
-  
-    /**
-     * 用户名
-     */
-    private String name;
+public class UserInterfaceInfoAddRequest implements Serializable {
     
     /**
-     * 描述
+     * id
      */
-    private String description;
+    private Long id;
     
     /**
-     * 接口地址
+     * 调用用户 id
      */
-    private String url;
+    private Long userId;
     
     /**
-     *  请求参数
+     * 接口 id
      */
-    private String requestParams;
+    private Long interfaceInfoId;
     
     /**
-     * 请求头
+     * 总调用次数
      */
-    private String requestHeader;
+    private Integer totalNum;
     
     /**
-     * 响应头
+     * 剩余调用次数
      */
-    private String responseHeader;
+    private Integer leftNum;
     
-    /**
-     * 请求类型
-     */
-    private String method;
-    
-    private static final long serialVersionUID = 1L;
+
 }
