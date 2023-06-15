@@ -2,11 +2,11 @@ package com.yupi.xjapi.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xj.xjapicommon.model.entity.UserInterfaceInfo;
 import com.yupi.xjapi.common.ErrorCode;
 import com.yupi.xjapi.exception.BusinessException;
-import com.yupi.xjapi.model.entity.UserInterfaceInfo;
-import com.yupi.xjapi.service.UserInterfaceInfoService;
 import com.yupi.xjapi.mapper.UserInterfaceInfoMapper;
+import com.yupi.xjapi.service.UserInterfaceInfoService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoMapper, UserInterfaceInfo>
-    implements UserInterfaceInfoService{
+    implements UserInterfaceInfoService {
     
     @Override
     public void validUserInterfaceInfo(UserInterfaceInfo interfaceInfo, boolean add) {

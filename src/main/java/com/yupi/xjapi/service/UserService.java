@@ -2,8 +2,8 @@ package com.yupi.xjapi.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xj.xjapicommon.model.entity.User;
 import com.yupi.xjapi.model.dto.user.UserQueryRequest;
-import com.yupi.xjapi.model.entity.User;
 import com.yupi.xjapi.model.vo.LoginUserVO;
 import com.yupi.xjapi.model.vo.UserVO;
 import java.util.List;

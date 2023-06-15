@@ -1,6 +1,7 @@
 package com.yupi.xjapi.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xj.xjapicommon.model.entity.User;
 import com.yupi.xjapi.common.BaseResponse;
 import com.yupi.xjapi.common.ErrorCode;
 import com.yupi.xjapi.common.ResultUtils;
@@ -10,7 +11,6 @@ import com.yupi.xjapi.model.dto.post.PostQueryRequest;
 import com.yupi.xjapi.model.dto.postfavour.PostFavourAddRequest;
 import com.yupi.xjapi.model.dto.postfavour.PostFavourQueryRequest;
 import com.yupi.xjapi.model.entity.Post;
-import com.yupi.xjapi.model.entity.User;
 import com.yupi.xjapi.model.vo.PostVO;
 import com.yupi.xjapi.service.PostFavourService;
 import com.yupi.xjapi.service.PostService;

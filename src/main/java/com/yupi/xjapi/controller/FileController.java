@@ -1,6 +1,7 @@
 package com.yupi.xjapi.controller;
 
 import cn.hutool.core.io.FileUtil;
+import com.xj.xjapicommon.model.entity.User;
 import com.yupi.xjapi.common.BaseResponse;
 import com.yupi.xjapi.common.ErrorCode;
 import com.yupi.xjapi.common.ResultUtils;
@@ -8,7 +9,6 @@ import com.yupi.xjapi.constant.FileConstant;
 import com.yupi.xjapi.exception.BusinessException;
 import com.yupi.xjapi.manager.CosManager;
 import com.yupi.xjapi.model.dto.file.UploadFileRequest;
-import com.yupi.xjapi.model.entity.User;
 import com.yupi.xjapi.model.enums.FileUploadBizEnum;
 import com.yupi.xjapi.service.UserService;
 import java.io.File;

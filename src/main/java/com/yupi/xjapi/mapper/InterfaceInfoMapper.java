@@ -1,7 +1,7 @@
 package com.yupi.xjapi.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yupi.xjapi.model.entity.InterfaceInfo;
+import com.xj.xjapicommon.model.entity.InterfaceInfo;
 
 /**
 * @author 嘻精

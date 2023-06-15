@@ -2,12 +2,12 @@ package com.yupi.xjapi.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xj.xjapicommon.model.entity.User;
 import com.yupi.xjapi.common.ErrorCode;
 import com.yupi.xjapi.exception.BusinessException;
 import com.yupi.xjapi.mapper.PostThumbMapper;
 import com.yupi.xjapi.model.entity.Post;
 import com.yupi.xjapi.model.entity.PostThumb;
-import com.yupi.xjapi.model.entity.User;
 import com.yupi.xjapi.service.PostService;
 import com.yupi.xjapi.service.PostThumbService;
 import javax.annotation.Resource;

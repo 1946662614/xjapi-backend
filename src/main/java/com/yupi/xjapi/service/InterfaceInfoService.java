@@ -1,7 +1,7 @@
 package com.yupi.xjapi.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yupi.xjapi.model.entity.InterfaceInfo;
+import com.xj.xjapicommon.model.entity.InterfaceInfo;
 
 /**
 * @author 嘻精

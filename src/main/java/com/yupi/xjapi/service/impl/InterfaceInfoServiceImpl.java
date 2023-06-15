@@ -2,11 +2,11 @@ package com.yupi.xjapi.service.impl;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xj.xjapicommon.model.entity.InterfaceInfo;
 import com.yupi.xjapi.common.ErrorCode;
 import com.yupi.xjapi.exception.BusinessException;
 
 import com.yupi.xjapi.mapper.InterfaceInfoMapper;
-import com.yupi.xjapi.model.entity.InterfaceInfo;
 import com.yupi.xjapi.service.InterfaceInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;

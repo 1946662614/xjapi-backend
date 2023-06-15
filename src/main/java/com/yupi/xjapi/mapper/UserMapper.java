@@ -1,7 +1,7 @@
 package com.yupi.xjapi.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yupi.xjapi.model.entity.User;
+import com.xj.xjapicommon.model.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.context.annotation.Bean;
 

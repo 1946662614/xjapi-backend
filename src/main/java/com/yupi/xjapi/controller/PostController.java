@@ -2,6 +2,7 @@ package com.yupi.xjapi.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.gson.Gson;
+import com.xj.xjapicommon.model.entity.User;
 import com.yupi.xjapi.annotation.AuthCheck;
 import com.yupi.xjapi.common.BaseResponse;
 import com.yupi.xjapi.common.DeleteRequest;
@@ -15,7 +16,6 @@ import com.yupi.xjapi.model.dto.post.PostEditRequest;
 import com.yupi.xjapi.model.dto.post.PostQueryRequest;
 import com.yupi.xjapi.model.dto.post.PostUpdateRequest;
 import com.yupi.xjapi.model.entity.Post;
-import com.yupi.xjapi.model.entity.User;
 import com.yupi.xjapi.model.vo.PostVO;
 import com.yupi.xjapi.service.PostService;
 import com.yupi.xjapi.service.UserService;

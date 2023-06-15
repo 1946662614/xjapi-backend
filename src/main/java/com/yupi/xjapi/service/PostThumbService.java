@@ -1,8 +1,8 @@
 package com.yupi.xjapi.service;
 
+import com.xj.xjapicommon.model.entity.User;
 import com.yupi.xjapi.model.entity.PostThumb;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yupi.xjapi.model.entity.User;
 
 /**
  * 帖子点赞服务

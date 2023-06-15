@@ -1,6 +1,7 @@
 package com.yupi.xjapi.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xj.xjapicommon.model.entity.User;
 import com.yupi.xjapi.annotation.AuthCheck;
 import com.yupi.xjapi.common.BaseResponse;
 import com.yupi.xjapi.common.DeleteRequest;
@@ -16,7 +17,6 @@ import com.yupi.xjapi.model.dto.user.UserQueryRequest;
 import com.yupi.xjapi.model.dto.user.UserRegisterRequest;
 import com.yupi.xjapi.model.dto.user.UserUpdateMyRequest;
 import com.yupi.xjapi.model.dto.user.UserUpdateRequest;
-import com.yupi.xjapi.model.entity.User;
 import com.yupi.xjapi.model.vo.LoginUserVO;
 import com.yupi.xjapi.model.vo.UserVO;
 import com.yupi.xjapi.service.UserService;

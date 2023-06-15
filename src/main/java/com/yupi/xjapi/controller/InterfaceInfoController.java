@@ -1,10 +1,11 @@
 package com.yupi.xjapi.controller;
 
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.gson.Gson;
 import com.xj.xjapiclientsdk.client.XjApiClient;
+import com.xj.xjapicommon.model.entity.InterfaceInfo;
+import com.xj.xjapicommon.model.entity.User;
 import com.yupi.xjapi.annotation.AuthCheck;
 import com.yupi.xjapi.common.*;
 import com.yupi.xjapi.constant.UserConstant;
@@ -14,8 +15,6 @@ import com.yupi.xjapi.model.dto.interfaceInfo.InterfaceInfoAddRequest;
 import com.yupi.xjapi.model.dto.interfaceInfo.InterfaceInfoInvokeRequest;
 import com.yupi.xjapi.model.dto.interfaceInfo.InterfaceInfoQueryRequest;
 import com.yupi.xjapi.model.dto.interfaceInfo.InterfaceInfoUpdateRequest;
-import com.yupi.xjapi.model.entity.InterfaceInfo;
-import com.yupi.xjapi.model.entity.User;
 import com.yupi.xjapi.model.enums.InterfaceInfoStatusEnum;
 import com.yupi.xjapi.service.InterfaceInfoService;
 import com.yupi.xjapi.service.UserService;

@@ -1,9 +1,9 @@
 package com.yupi.xjapi.aop;
 
+import com.xj.xjapicommon.model.entity.User;
 import com.yupi.xjapi.annotation.AuthCheck;
 import com.yupi.xjapi.common.ErrorCode;
 import com.yupi.xjapi.exception.BusinessException;
-import com.yupi.xjapi.model.entity.User;
 import com.yupi.xjapi.model.enums.UserRoleEnum;
 import com.yupi.xjapi.service.UserService;
 import javax.annotation.Resource;

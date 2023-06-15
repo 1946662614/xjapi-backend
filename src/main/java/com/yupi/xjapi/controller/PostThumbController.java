@@ -1,11 +1,11 @@
 package com.yupi.xjapi.controller;
 
+import com.xj.xjapicommon.model.entity.User;
 import com.yupi.xjapi.common.BaseResponse;
 import com.yupi.xjapi.common.ErrorCode;
 import com.yupi.xjapi.common.ResultUtils;
 import com.yupi.xjapi.exception.BusinessException;
 import com.yupi.xjapi.model.dto.postthumb.PostThumbAddRequest;
-import com.yupi.xjapi.model.entity.User;
 import com.yupi.xjapi.service.PostThumbService;
 import com.yupi.xjapi.service.UserService;
 import javax.annotation.Resource;
