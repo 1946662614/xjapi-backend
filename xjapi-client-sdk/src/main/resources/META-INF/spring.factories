@@ -1,2 +1,0 @@
-# starter
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.xj.xjapiclientsdk.XjApiClientConfig

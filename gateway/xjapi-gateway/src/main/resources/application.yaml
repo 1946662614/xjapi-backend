@@ -1,0 +1,37 @@
+server:
+  port: 8090
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api_route
+          uri: http://localhost:8123
+          predicates:
+            - Path=/api/**
+#        - id: after_route
+#          uri: https://www.baidu.com
+#          predicates:
+#            - After=2017-01-20T17:42:47.789-07:00[America/Denver]
+#        - id: path_route
+#          uri: https://www.bing.com
+#          predicates:
+#            - Path=/bing/**
+#        - id: path_route2
+#          uri: https://www.baidu.com
+#          predicates:
+#            - Path=/api/**
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
+dubbo:
+  application:
+    name: dubbo-springboot-demo-provider
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: nacos-registry
+    address: nacos://localhost:8848
